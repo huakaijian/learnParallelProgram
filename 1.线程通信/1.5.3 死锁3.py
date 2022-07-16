@@ -1,11 +1,13 @@
-from threading import Thread, Lock
+from threading import Thread, RLock
 
 import time
 
-lock1 = Lock()  # 创建一个互斥锁
+lock1 = RLock()
 
-lock2 = Lock()  # 创建一个互斥锁
+lock2 = RLock()
 
+
+# RLock 同样会死锁
 
 def fun1():
     lock1.acquire()
@@ -37,6 +39,6 @@ t1.start()  # 开启线程的执行
 
 t2.start()
 
-t1.join()  # 回收线程资源
+t1.join()
 
 t2.join()
